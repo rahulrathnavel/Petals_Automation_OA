@@ -14,7 +14,7 @@
 
 ---
 
-## ⚡ Features
+##  Features
 
 - **Completely Offline**: No network calls, no cloud API, no `INTERNET` permissions. Privacy-first by design.
 - **YOLO26 Nano Model**: Leverages the official `yolo26n` end-to-end NMS-free object detection model.
@@ -22,7 +22,7 @@
 - **Smart Preprocessing**: Preserves original image aspect ratios through intelligent padding/letterboxing (640x640), preventing distortion.
 - **Ultra-Minimal UI**: No fluff. No login, no database, no complex settings. Just upload and detect.
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework:** Android SDK (API 24 - 34)
 - **Language:** Kotlin
@@ -30,10 +30,10 @@
 - **Machine Learning:** Ultralytics YOLO26, Python, OpenCV (for model export and analysis)
 - **Build System:** Gradle 8.7
 
-## 📦 Download APK
+##  Download APK
 
 The compiled Android application is available directly in this repository:
-👉 **[Download OfflineCarDetector.apk](./OfflineCarDetector.apk)**
+ **[Download OfflineCarDetector.apk](./OfflineCarDetector.apk)**
 
 ## 🚀 Quick Start Guide
 
@@ -61,7 +61,7 @@ cd Petals_Automation_OA
 ```
 The newly compiled APK will be located at `app/build/outputs/apk/debug/app-debug.apk`.
 
-## 🧠 Workflow & Architecture
+##  Workflow & Architecture
 
 1. **Model Export**: 
    - We utilized the Ultralytics Python library to load `yolo26n.pt`.
