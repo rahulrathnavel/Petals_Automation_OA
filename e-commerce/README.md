@@ -11,6 +11,12 @@
 
 A focused, professional MERN marketplace for an OA evaluation. Buyers receive a $1,000 virtual balance, shop securely, and check out; sellers manage a small catalogue and receive sale proceeds.
 
+## Live deployment
+
+- **Storefront:** [petals-market.vercel.app](https://petals-market.vercel.app/)
+- **API health check:** [petals-automation-oa.onrender.com/api/health](https://petals-automation-oa.onrender.com/api/health)
+- **Database:** MongoDB Atlas (private; credentials are never committed)
+
 ## Highlights
 
 - Buyer and seller registration with JWT authentication and role guards
@@ -31,22 +37,19 @@ A focused, professional MERN marketplace for an OA evaluation. Buyers receive a 
 | Uploads | Multer local storage |
 | Local infrastructure | Docker Compose |
 
-## Architecture
+## Production architecture
 
 ```mermaid
 flowchart LR
-  B[React / Vite client] -->|REST + JWT| A[Express API]
-  A --> AU[Auth and role middleware]
-  A --> P[Product routes]
-  A --> C[Cart routes]
-  A --> O[Checkout and order routes]
-  P --> M[(MongoDB)]
-  C --> M
-  O --> M
-  A --> U[Local uploaded images]
+  B[Browser] -->|HTTPS| V[Vercel\nReact + Vite storefront]
+  V -->|REST + JWT| R[Render\nExpress API]
+  R --> AU[Authentication + role guards]
+  R --> P[Products, cart, orders]
+  P --> M[(MongoDB Atlas\nUsers, products, carts, orders)]
+  R --> U[Optional product-image endpoint]
 ```
 
-## Purchase workflow
+## Checkout workflow
 
 ```mermaid
 sequenceDiagram
@@ -60,6 +63,20 @@ sequenceDiagram
   API->>DB: Decrement stock and create order
   API->>DB: Clear cart and commit transaction
   API-->>Buyer: Purchase success + updated balance
+```
+
+## Request flow
+
+```mermaid
+flowchart TD
+  A[Buyer opens live storefront] --> B[React requests product catalogue]
+  B --> C[Render validates request]
+  C --> D[MongoDB Atlas returns persisted data]
+  D --> A
+  A --> E[Buyer signs up or logs in]
+  E --> F[JWT session stored in browser]
+  F --> G[Authenticated cart and checkout requests]
+  G --> H[MongoDB transaction updates balances, stock, order, and cart]
 ```
 
 ## Project structure
