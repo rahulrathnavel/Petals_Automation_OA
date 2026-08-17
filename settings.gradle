@@ -1,0 +1,2 @@
+rootProject.name = "OfflineCarDetector"
+include ':app'
