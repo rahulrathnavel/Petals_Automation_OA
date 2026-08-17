@@ -4,3 +4,7 @@ server/.env
 client/dist/
 server/uploads/*
 !server/uploads/.gitkeep
+e-commerce/server/.env
+e-commerce/client/dist/
+e-commerce/server/uploads/*
+!e-commerce/server/uploads/.gitkeep
