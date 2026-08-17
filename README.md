@@ -90,7 +90,7 @@ npm install
 npm install --prefix server
 npm install --prefix client
 
-# 4. Start MongoDB
+# 4. Start MongoDB (the included initializer configures a local single-node replica set)
 docker compose up -d
 
 # 5. Seed accounts and sample products

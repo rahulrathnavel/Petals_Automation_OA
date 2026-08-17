@@ -4,5 +4,13 @@ services:
     command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
     ports: ["27017:27017"]
     volumes: ["mongo_data:/data/db"]
+  mongo-init:
+    image: mongo:7
+    depends_on: [mongo]
+    restart: "no"
+    entrypoint: ["/bin/bash", "-c"]
+    command: >
+      until mongosh --host mongo --quiet --eval "db.runCommand({ ping: 1 })"; do sleep 2; done;
+      mongosh --host mongo --quiet --eval "try { rs.status().ok } catch (e) { rs.initiate({_id:'rs0',members:[{_id:0,host:'localhost:27017'}]}) }"
 volumes:
   mongo_data:
