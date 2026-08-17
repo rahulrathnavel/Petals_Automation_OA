@@ -154,4 +154,4 @@ flowchart LR
   API --> DB[MongoDB Atlas]
 ```
 
-Before deploying, set the deployed API URL in the client, configure `CLIENT_URL` in the API host, use MongoDB Atlas, and provide a production `JWT_SECRET` through host secrets.
+Before deploying, set `VITE_API_URL` in Vercel to the deployed API URL including `/api`, configure `CLIENT_URL` in the API host, use MongoDB Atlas, and provide a production `JWT_SECRET` through host secrets.
